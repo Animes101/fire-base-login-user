@@ -3,7 +3,7 @@ import Navbar from './../Navbar';
 
 const Header = () => {
   return (
-    <div>
+    <div className="min-h-[calc(100vh - 300px)]">
       <Navbar />
     </div>
   )

@@ -5,11 +5,11 @@ import Footer from "./Footer"
 
 const Root = () => {
   return (
-    <>
+    <div className="min-h-[calc(100vh - 300px)]">
         <Header />
         <Outlet />
         <Footer />
-    </>
+    </div>
   )
 }
 
