@@ -3,7 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser,loginGoogle } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -26,6 +26,16 @@ const Login = () => {
         console.log(err.message);
       });
   };
+
+  const handleGoogleLogin=()=>{
+    loginGoogle()
+    .then(res=>{
+      console.log(res.user)
+    })
+    .catch(err=>{
+      console.log(err.message);
+    })
+  }
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full mx-auto lg:w-[800px] shadow-lg bg-white flex group text-[#0095ff]">
@@ -70,6 +80,9 @@ const Login = () => {
             Submit
           </button>
         </form>
+        <div>
+          <button onClick={handleGoogleLogin}>google Login</button>
+        </div>
       </div>
     </div>
   );
