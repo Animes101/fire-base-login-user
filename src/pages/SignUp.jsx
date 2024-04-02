@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const SignUp = () => {
 
     const [inputValidation ,setInputValidation]=useState('');
+
+    const {createUser}=useContext(AuthContext);
 
     const hanldeSignUp=(e)=>{
         e.preventDefault();
@@ -17,10 +20,19 @@ const SignUp = () => {
         }
 
         console.log(emailId,password);
-
-
-
         setInputValidation('')
+
+        createUser(emailId,password)
+        .then((res)=>{
+
+          const user=res.user;
+
+          console.log(user);
+
+        })
+        .catch(err=>{
+          console.log(err.message);
+        })
 
 
 
