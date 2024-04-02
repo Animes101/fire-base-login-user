@@ -65,6 +65,10 @@ const Navbar = () => {
           <li>
             <Link to="/signup">SignUp</Link>
           </li>
+          {user &&
+          <li>
+          <Link to="/order">Order</Link>
+        </li>}
         </ul>
       </div>
       <div className="navbar-end">

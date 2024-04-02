@@ -1,28 +1,30 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
 
-  const {loginUser}=useContext(AuthContext);
+  const navigate = useNavigate();
 
-  
   const handleLogin = (e) => {
     e.preventDefault();
 
-   const email=e.target.email.value;
-   const password=e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-   loginUser(email,password)
-   .then(res=>{
-    const user=res.user;
+    loginUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        navigate('/')
 
-    console.log(user)
-   })
-   .catch(err=>{
-    console.log(err.message);
-   })
-  
+        e.target.reset
+
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -44,7 +46,7 @@ const Login = () => {
             <input
               id="email_"
               type="email"
-              name='email'
+              name="email"
               placeholder="example@example.com"
               className="p-3 block w-full shadow-lg outline-none border-2 rounded-md border-dashed  invalid:border-red-700 valid:border-[#0095ff]"
             />
@@ -55,7 +57,7 @@ const Login = () => {
               id="password_"
               type="password"
               placeholder=".............."
-              name='password'
+              name="password"
               min={5}
               className="p-3 block w-full shadow-lg outline-none border-2 rounded-md border-dashed invalid:border-red-700 valid:border-[#0095ff]"
             />
